@@ -471,7 +471,7 @@ local function teleportToChest(chestPosition)
    local humanoidRootPart = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
    if humanoidRootPart and chestPosition then
        humanoidRootPart.CFrame = CFrame.new(chestPosition)
-       wait(0.1) -- Задержка между телепортами
+       wait(0.09) -- Задержка между телепортами
    end
 end
 
@@ -499,7 +499,7 @@ local function createChestFarmMenu()
    title.Size = UDim2.new(1, 0, 0, 40)
    title.Text = "VietHoangiOS CHEST FARM \n FOR THIRD SEA"
    title.TextColor3 = Color3.fromRGB(255, 215, 0) -- Золотой цвет
-   title.TextSize = 22
+   title.TextSize = 20
    title.Font = Enum.Font.GothamBold
    title.BackgroundTransparency = 1
    title.TextXAlignment = Enum.TextXAlignment.Center
@@ -645,7 +645,7 @@ end
 local function moveToLocation(humanoidRootPart, targetPosition)
    local TweenService = game:GetService("TweenService")
    local distance = (humanoidRootPart.Position - targetPosition).Magnitude
-   local speed = 275
+   local speed = 400
    local tweenDuration = distance / speed
    local tweenInfo = TweenInfo.new(tweenDuration, Enum.EasingStyle.Linear)
    local targetCFrame = CFrame.new(targetPosition.X, targetPosition.Y + 2, targetPosition.Z) -- Поднимаем на 2 единицы
@@ -804,7 +804,7 @@ local function startChestFarm()
            menu.BalanceLabel.Text = formatNumber(currentBalance) .. "$"
            if currentBalance > lastBalance then
                chestsCollected = chestsCollected + 1
-               menu.ChestCountLabel.Text = "CHESTS: " .. chestsCollected
+               menu.ChestCountLabel.Text = "Rương: " .. chestsCollected
            end
            lastBalance = currentBalance
        end
