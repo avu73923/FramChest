@@ -517,7 +517,7 @@ local function createChestFarmMenu()
 
    chestCountLabel.Size = UDim2.new(1, 0, 0, 30)
    chestCountLabel.Position = UDim2.new(0, 0, 0.30, 0)
-   chestCountLabel.Text = "CHESTS: 0"
+   chestCountLabel.Text = "Rương: 0"
    chestCountLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
    chestCountLabel.TextSize = 22
    chestCountLabel.Font = Enum.Font.GothamBold
@@ -565,7 +565,7 @@ local function createChestFarmMenu()
    goodbyeLabel.Position = UDim2.new(0, 0, 0.88, 0)
    goodbyeLabel.Text = "Xin một đăng kí"
    goodbyeLabel.TextColor3 = Color3.fromRGB(255, 255, 255) -- Белый цвет
-   goodbyeLabel.TextSize = 10
+   goodbyeLabel.TextSize = 18
    goodbyeLabel.Font = Enum.Font.GothamBold
    goodbyeLabel.BackgroundTransparency = 1
    goodbyeLabel.TextXAlignment = Enum.TextXAlignment.Center
