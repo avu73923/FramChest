@@ -105,7 +105,7 @@ corner.CornerRadius = UDim.new(0, 12) -- Закругление углов
 local titleLabel = Instance.new("TextLabel", menuFrame)
 titleLabel.Size = UDim2.new(1, 0, 0, 40)
 titleLabel.Position = UDim2.new(0, 0, 0, 0)
-titleLabel.Text = "VietHoangiOS FRAM CHEST"
+titleLabel.Text = "VietHoangiOS"
 titleLabel.Font = Enum.Font.GothamBold
 titleLabel.TextColor3 = Color3.fromRGB(255, 215, 0) -- Золотистый цвет текста
 titleLabel.BackgroundTransparency = 1
@@ -116,7 +116,7 @@ titleLabel.TextStrokeTransparency = 1 -- Эффект обводки текст�
 local toggleButton = Instance.new("TextButton", menuFrame)
 toggleButton.Size = UDim2.new(1, -10, 0, 30) -- Размеры кнопки
 toggleButton.Position = UDim2.new(0, 5, 0, 50)
-toggleButton.Text = "DISABLE JUMP" -- Начальное состояние кнопки
+toggleButton.Text = "Tắt nhảy" -- Начальное состояние кнопки
 toggleButton.Font = Enum.Font.GothamBold
 toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255) -- Белый текст кнопки
 toggleButton.BackgroundColor3 = Color3.fromRGB(73, 0, 138) -- Цвет кнопки
@@ -559,13 +559,13 @@ local function createChestFarmMenu()
    local offButtonCorner = Instance.new("UICorner", offButton)
    offButtonCorner.CornerRadius = UDim.new(0, 6) -- Скругление углов
 
-   -- Добавление текста "GOODBYE SlimeX!" внизу
+   -- Добавление текста "Xin một đăng kí" внизу
    local goodbyeLabel = Instance.new("TextLabel")
    goodbyeLabel.Size = UDim2.new(1, 0, 0, 30)
    goodbyeLabel.Position = UDim2.new(0, 0, 0.88, 0)
-   goodbyeLabel.Text = "GOODBYE SlimeX!"
+   goodbyeLabel.Text = "Xin một đăng kí"
    goodbyeLabel.TextColor3 = Color3.fromRGB(255, 255, 255) -- Белый цвет
-   goodbyeLabel.TextSize = 18
+   goodbyeLabel.TextSize = 10
    goodbyeLabel.Font = Enum.Font.GothamBold
    goodbyeLabel.BackgroundTransparency = 1
    goodbyeLabel.TextXAlignment = Enum.TextXAlignment.Center
