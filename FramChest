@@ -471,7 +471,7 @@ local function teleportToChest(chestPosition)
    local humanoidRootPart = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
    if humanoidRootPart and chestPosition then
        humanoidRootPart.CFrame = CFrame.new(chestPosition)
-       wait(0.09) -- Задержка между телепортами
+       wait(0.1) -- Задержка между телепортами
    end
 end
 
