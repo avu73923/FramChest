@@ -645,7 +645,7 @@ end
 local function moveToLocation(humanoidRootPart, targetPosition)
    local TweenService = game:GetService("TweenService")
    local distance = (humanoidRootPart.Position - targetPosition).Magnitude
-   local speed = 400
+   local speed = 275
    local tweenDuration = distance / speed
    local tweenInfo = TweenInfo.new(tweenDuration, Enum.EasingStyle.Linear)
    local targetCFrame = CFrame.new(targetPosition.X, targetPosition.Y + 2, targetPosition.Z) -- Поднимаем на 2 единицы
