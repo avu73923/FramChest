@@ -471,9 +471,33 @@ local function teleportToChest(chestPosition)
    local humanoidRootPart = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
    if humanoidRootPart and chestPosition then
        humanoidRootPart.CFrame = CFrame.new(chestPosition)
-       wait(0.1) -- Задержка между телепортами
+       wait(0.01) -- Задержка между телепортами
    end
 end
+
+local function resetCharacter()
+    local character = lp.Character or lp.CharacterAdded:Wait()
+    character:BreakJoints()
+end
+
+local function mainLoop()
+    while true do
+        local startTime = tick()
+        for _, area in ipairs(locations) do
+            for index = 1, 10 do
+                teleportToChest(locations)
+                count = count + 1
+                wait(0.01)
+
+                if count >= 1000 then
+                    resetCharacter()
+                    count = 0
+                    wait(10)
+                    break
+                end
+            end
+        end
+    end
 
 -- Функция для создания меню
 local function createChestFarmMenu()
