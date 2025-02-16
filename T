@@ -1,0 +1,71 @@
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+local RunService = game:GetService("RunService")
+
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local chestCount = 0  -- Biến đếm số rương đã nhặt
+local maxChest = 5  -- Sau khi nhặt đủ 5 rương sẽ reset
+
+-- Hàm tìm 5 rương gần nhất
+local function getNearestChests()
+    local chests = {}
+
+    for _, obj in pairs(workspace:GetChildren()) do
+        if obj:IsA("Model") and obj:FindFirstChild("ChestPart") then  -- Đổi "ChestPart" nếu cần
+            table.insert(chests, obj.ChestPart)
+        end
+    end
+
+    table.sort(chests, function(a, b)  -- Sắp xếp rương theo khoảng cách
+        return (humanoidRootPart.Position - a.Position).Magnitude < (humanoidRootPart.Position - b.Position).Magnitude
+    end)
+
+    return chests
+end
+
+-- Hàm bypass teleport
+local function bypassTeleport(targetPosition)
+    local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Linear)
+    local tween = TweenService:Create(humanoidRootPart, tweenInfo, {CFrame = CFrame.new(targetPosition)})
+    tween:Play()
+    tween.Completed:Wait()
+end
+
+-- Hàm di chuyển đến rương và nhặt
+local function collectChest(chestPart)
+    if not chestPart then return end
+
+    local targetPosition = chestPart.Position + Vector3.new(0, 3, 0)  -- Điểm đến cách rương 3 đơn vị trên cao
+    bypassTeleport(targetPosition)
+
+    wait(0.3)  -- Chờ một chút để tránh lỗi
+
+    -- Giả lập nhặt rương
+    local proximityPrompt = chestPart:FindFirstChildOfClass("ProximityPrompt")
+    if proximityPrompt then
+        fireproximityprompt(proximityPrompt)
+        chestCount = chestCount + 1
+        print("Đã nhặt " .. chestCount .. " rương")
+    end
+end
+
+-- Vòng lặp nhặt rương liên tục
+while wait(2) do
+    local chests = getNearestChests()
+    for i = 1, math.min(5, #chests) do  -- Nhặt tối đa 5 rương
+        collectChest(chests[i])
+        wait(1)  -- Chờ giữa mỗi lần nhặt để tránh bị phát hiện
+    end
+
+    if chestCount >= maxChest then
+        print("Reset nhân vật để tránh bị phát hiện!")
+        chestCount = 0
+        character:BreakJoints()  -- Reset nhân vật
+        wait(3)  -- Chờ hồi sinh
+        character = player.Character or player.CharacterAdded:Wait()
+        humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+    end
+end
